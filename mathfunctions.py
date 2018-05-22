@@ -7,7 +7,7 @@ def equation(equation):
 def mean(numbers):
     mean = 0
 
-    for i in numbers[1:]:
+    for i in numbers:
         mean += float(i)
 
     return mean / (len(numbers) - 1)
