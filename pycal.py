@@ -1,45 +1,58 @@
+from mathfunctions import equation, mean, rt, prime
+
 input_error = 'Please enter a valid input'
 options = '''
-    There are currently 2 options
-    1. Input an equation and get the answer
-    2. Input mean followed by a list of numbers separated by spaces
+Welcome to pycal!
+If you need help, type help
     '''
-def equation(equation):
-    if '^' in equation:
-        equation = str.replace(equation, '^', '**')
 
-    try:
-        return eval(equation)
 
-    except:
-        return input_error
-    
-def mean(numbers):
-    mean = 0
-
-    #removes white space from list
-    for i in numbers[1:]:
-        try:
-            float(i)
-        except:
-            numbers.remove(i)
-
-    for i in numbers[1:]:
-        try:
-            mean += float(i)
-        except:
-            return input_error
-    try:
-        return mean / (len(numbers) - 1)
-    except:
-        return input_error
-    
 if __name__ == "__main__":
-    intro = '''
-        Welcome to the python calculator.
-        To use this simply type in the equation you want answered.
-        To get a list of other uses type help.
-        To exit type ctr-c or delete
-        '''
 
-    print(intro)
+    print(options)
+    
+    ans = 0
+
+    while True:
+        
+        user_input = input('>>>')
+        user_input = user_input.split(' ')
+
+        for i in user_input:
+            if 'ans' in i:
+                user_input[user_input.index(i)] = ans
+                
+        try:
+            if user_input[0] == 'mean':
+                
+                try:
+                    ans = mean(user_input[1:])
+                    print(ans)
+                except:
+                    print(input_error)
+
+            elif user_input[1] == 'rt':
+                
+                try:
+                    ans = rt(int(user_input[2]), int(user_input[0]), int(user_input[3]))
+                    print(ans)
+                except:
+                    print(input_error)
+
+#        elif user_input == 'prime':
+#
+#            for i in user_input[1:]:
+#            
+#                try:
+#                    ans = prime(i)
+#                    print(ans)
+#                except:
+#                    print(input_error)
+                
+        except:
+            
+            try:
+                ans = equation(user_input)
+                print(ans)
+            except:
+                print(input_error)
