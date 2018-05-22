@@ -29,7 +29,7 @@ def prime(tested_number):
     number = 2
     prime = True
 
-    while Prime == True and number < tested_number:
+    while Prime == True and number < tested_number / 2:
 
         if tested_number % number == 0:
             prime = False
